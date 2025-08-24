@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Supermarket – OOP Ultra Basic (Beautified)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <section class="hero">
+        <h2>🛒 ONLINE SHOPPING CENTRE</h2>
+        <div class="subtitle">SIÊU THỊ ONLINE - TRẦN NGUYỄN ANH KHA</div>
+    </section>
+
+    <h3 class="section-title">Sản phẩm</h3>
+    <div id="catalog" class="grid"></div>
+
+    <div class="panel">
+        <h3>Giỏ hàng</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Sản phẩm</th>
+                <th class="right">Giá</th>
+                <th class="center">SL</th>
+                <th class="right">Thành tiền</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="cartBody"></tbody>
+            <tfoot>
+            <tr>
+                <th colspan="4" class="right">Tổng tiền</th>
+                <th class="right" id="cartTotal">0.00</th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+        <div class="cart-actions">
+            <div class="pill"><span class="dot"></span> Tổng mặt hàng: <b id="cartCount">0</b></div>
+            <div>
+                <button class="ghost" onclick="clearCart()">Xoá giỏ</button>
+                <button onclick="checkout()">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

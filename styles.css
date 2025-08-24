@@ -1,0 +1,181 @@
+:root {
+    --primary: #2a7de1;
+    --secondary: #f97316;
+    --bg: #f9fafb;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --radius: 10px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* layout */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* header */
+.hero {
+    background: white;
+    padding: 20px 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    border-left: 6px solid var(--primary);
+}
+
+.hero h2 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--primary);
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+/* catalog grid */
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px 0 14px;
+    color: var(--text);
+}
+
+.grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+}
+
+.card h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--secondary);
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    align-items: center;
+}
+
+/* inputs + buttons */
+input[type=number] {
+    width: 70px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    font-size: 14px;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button.primary {
+    background: var(--primary);
+    color: white;
+}
+
+button.primary:hover {
+    background: #1d5fb5;
+}
+
+button.danger {
+    background: #ef4444;
+    color: white;
+}
+
+button.danger:hover {
+    background: #c53030;
+}
+
+button.ghost {
+    background: #f3f4f6;
+    color: var(--text);
+}
+
+button.ghost:hover {
+    background: #e5e7eb;
+}
+
+/* cart panel */
+.panel {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 24px;
+    overflow: hidden;
+}
+
+.panel h3 {
+    margin: 0;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    background: #f3f4f6;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+}
+
+thead th {
+    background: #f9fafb;
+}
+
+.right { text-align: right; }
+.center { text-align: center; }
+
+.cart-actions {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafb;
+}
