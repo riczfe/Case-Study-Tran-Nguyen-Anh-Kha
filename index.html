@@ -1,53 +1,308 @@
 <!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="utf-8">
-    <title>Supermarket – OOP Ultra Basic (Beautified)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="styles.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🛒 Supermarket – Beginner Edition</title>
+    <style>
+        :root{
+            --primary:#2563eb; --primary-600:#1d4ed8; --accent:#f97316; --bg:#f8fafc;
+            --text:#111827; --muted:#6b7280; --radius:14px; --shadow:0 8px 24px rgba(0,0,0,.08)
+        }
+        *{box-sizing:border-box}
+        html,body{margin:0; font-family:"Segoe UI", Roboto, Arial, sans-serif; color:var(--text); background:var(--bg)}
+        a{color:inherit; text-decoration:none}
+
+        /* ===== Header / Nav ===== */
+        header{position:sticky; top:0; z-index:20; background:#fff; box-shadow:var(--shadow)}
+        .nav{max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:16px; padding:10px 16px}
+        .brand{display:flex; align-items:center; gap:10px}
+        .brand .logo{width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--primary), #60a5fa)}
+        .brand h1{font-size:18px; margin:0}
+        .links{margin-left:auto; display:flex; align-items:center; gap:14px}
+        .links a{padding:8px 10px; border-radius:10px}
+        .links a:hover{background:#f3f4f6}
+        .cart-chip{display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:999px; background:#eef2ff; color:var(--primary)}
+        .cart-chip b{background:var(--primary); color:#fff; border-radius:999px; padding:1px 8px; font-size:12px}
+
+        /* ===== Hero / Welcome ===== */
+        .hero{max-width:1100px; margin:18px auto; background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+        .hero-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:0}
+        .hero-left{padding:26px}
+        .hero h2{margin:0 0 8px; font-size:28px; color:var(--primary)}
+        .hero p{margin:6px 0 16px; color:var(--muted)}
+        .cta{display:flex; gap:10px}
+        .btn{border:0; cursor:pointer; font-weight:600; padding:10px 14px; border-radius:12px}
+        .btn.primary{background:var(--primary); color:#fff}
+        .btn.primary:hover{background:var(--primary-600)}
+        .btn.ghost{background:#f3f4f6}
+        .btn.ghost:hover{background:#e5e7eb}
+        .hero-right{min-height:220px; background:url('https://images.unsplash.com/photo-1506617420156-8e4536971650?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat}
+
+        /* ===== Utility ===== */
+        .container{max-width:1100px; margin:0 auto; padding:0 16px}
+        .section{margin:26px 0 14px; display:flex; align-items:center; justify-content:space-between}
+        .section h3{margin:0; font-size:20px}
+        .searchbar{display:flex; gap:8px}
+        .searchbar input{padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px; min-width:240px}
+
+        /* ===== Catalog grid ===== */
+        .grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+        .card{background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column}
+        .card img{width:100%; aspect-ratio:4/3; object-fit:cover}
+        .card .pad{padding:12px}
+        .card h4{margin:0 0 6px; font-size:16px}
+        .price{color:var(--accent); font-weight:700}
+        .row{display:flex; align-items:center; gap:8px; margin-top:10px}
+        .row input[type=number]{width:76px; padding:8px 10px; border:1px solid #e5e7eb; border-radius:10px}
+
+        /* ===== Panel (Cart) ===== */
+        .panel{background:#fff; border-radius:16px; box-shadow:var(--shadow); margin:28px 0; overflow:hidden}
+        .panel h3{margin:0; padding:14px 16px; border-bottom:1px solid #f0f0f0; background:#f9fafb}
+        table{width:100%; border-collapse:collapse}
+        th,td{padding:12px; border-bottom:1px solid #f5f5f5; text-align:left}
+        thead th{background:#f9fafb}
+        .right{text-align:right} .center{text-align:center}
+        .cart-actions{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#f9fafb}
+        .pill{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; background:#f3f4f6; color:#374151}
+        .pill .dot{width:8px; height:8px; border-radius:99px; background:#10b981}
+        .btn.small{padding:6px 10px; border-radius:10px; font-weight:600}
+        .btn.danger{background:#ef4444; color:#fff}
+        .btn.danger:hover{background:#dc2626}
+
+        /* ===== Footer ===== */
+        footer{margin:26px 0 50px; color:#6b7280}
+        footer .foot{max-width:1100px; margin:0 auto; padding:0 16px; display:flex; gap:10px; justify-content:space-between}
+
+        /* ===== Responsive ===== */
+        @media (max-width: 860px){
+            .hero-inner{grid-template-columns:1fr}
+            .hero-right{height:180px}
+            .searchbar input{min-width:0; width:100%}
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <section class="hero">
-        <h2>🛒 ONLINE SHOPPING CENTRE</h2>
-        <div class="subtitle">SIÊU THỊ ONLINE - TRẦN NGUYỄN ANH KHA</div>
-    </section>
+<!-- ===== Header ===== -->
+<header>
+    <nav class="nav">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"></div>
+            <h1>Online Shopping Centre</h1>
+        </div>
+        <div class="links">
+            <a href="#welcome">Trang chủ</a>
+            <a href="#catalog">Sản phẩm</a>
+            <a href="#about">Giới thiệu</a>
+            <a href="#contact">Liên hệ</a>
+            <span class="cart-chip" title="Tổng số mặt hàng trong giỏ">
+          🛒 <span>Giỏ hàng</span> <b id="cartCount">0</b>
+        </span>
+        </div>
+    </nav>
+</header>
 
-    <h3 class="section-title">Sản phẩm</h3>
-    <div id="catalog" class="grid"></div>
-
-    <div class="panel">
-        <h3>Giỏ hàng</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Sản phẩm</th>
-                <th class="right">Giá</th>
-                <th class="center">SL</th>
-                <th class="right">Thành tiền</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody id="cartBody"></tbody>
-            <tfoot>
-            <tr>
-                <th colspan="4" class="right">Tổng tiền</th>
-                <th class="right" id="cartTotal">0.00</th>
-                <th></th>
-            </tr>
-            </tfoot>
-        </table>
-        <div class="cart-actions">
-            <div class="pill"><span class="dot"></span> Tổng mặt hàng: <b id="cartCount">0</b></div>
-            <div>
-                <button class="ghost" onclick="clearCart()">Xoá giỏ</button>
-                <button onclick="checkout()">Thanh toán</button>
+<!-- ===== Welcome / Hero ===== -->
+<section id="welcome" class="hero" aria-label="Chào mừng">
+    <div class="hero-inner">
+        <div class="hero-left">
+            <h2>Siêu thị online – Trần Nguyễn Anh Kha</h2>
+            <p>Mua thực phẩm tươi ngon, giao nhanh trong ngày. Giá tốt, rõ ràng – thao tác đơn giản cho người mới học web.</p>
+            <div class="cta">
+                <a class="btn primary" href="#shop">Mua sắm ngay</a>
+                <a class="btn ghost" href="#about">Tìm hiểu thêm</a>
             </div>
         </div>
+        <div class="hero-right" aria-hidden="true"></div>
     </div>
-</div>
+</section>
 
-<script src="script.js"></script>
+<!-- ===== Catalog Section ===== -->
+<main id="shop" class="container">
+    <div class="section">
+        <h3>Sản phẩm</h3>
+        <div class="searchbar">
+            <input id="searchInput" type="search" placeholder="Tìm tên sản phẩm… (vd: táo, gạo)" aria-label="Tìm sản phẩm" />
+            <button class="btn" onclick="clearSearch()">Xoá</button>
+        </div>
+    </div>
+
+    <div id="catalog" class="grid" aria-live="polite"></div>
+
+    <!-- ===== Cart Panel ===== -->
+    <section class="panel" aria-label="Giỏ hàng">
+        <h3>Giỏ hàng</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Sản phẩm</th>
+                    <th class="right">Giá</th>
+                    <th class="center">SL</th>
+                    <th class="right">Thành tiền</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody id="cartBody"></tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="4" class="right">Tổng tiền</th>
+                    <th class="right" id="cartTotal">0</th>
+                    <th></th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="cart-actions">
+            <div class="pill"><span class="dot"></span> Tổng mặt hàng: <b id="cartCountBottom">0</b></div>
+            <div>
+                <button class="btn ghost" onclick="clearCart()">Xoá giỏ</button>
+                <button class="btn primary" onclick="checkout()">Thanh toán</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== About & Contact ===== -->
+    <section id="about" class="section">
+        <h3>Giới thiệu</h3>
+    </section>
+    <div class="panel" style="padding:16px">
+        <p>Đây là phiên bản <b>Beginner</b> minh hoạ shop online bằng HTML/CSS/JS thuần. Mục tiêu:
+            có header, trang chào mừng, danh mục có hình ảnh, giỏ hàng cơ bản – code rõ ràng, dễ học.</p>
+    </div>
+
+    <section id="contact" class="section">
+        <h3>Liên hệ</h3>
+    </section>
+    <div class="panel" style="padding:16px">
+        <p>Email: <a href="mailto:kha.shop@example.com">kha.shop@example.com</a> · Hotline: 0900 000 000</p>
+    </div>
+</main>
+
+<footer>
+    <div class="foot">
+        <small>© 2025 Online Shopping Centre · Demo học tập</small>
+        <small><a href="#welcome">Về đầu trang ↑</a></small>
+    </div>
+</footer>
+
+<script>
+    // ===== OOP cơ bản =====
+    function Product(id, name, price, image){
+        this.id=id; this.name=name; this.price=Number(price); this.image=image||"";
+    }
+    function CartItem(product, qty){
+        this.product=product; this.qty=Number(qty||1);
+        this.subtotal=function(){ return this.product.price * this.qty }
+    }
+
+    // ===== Dữ liệu mẫu (có hình ảnh) =====
+    const products = [
+        new Product("p1","Táo Mỹ Fuji", 35500, "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=1200&auto=format&fit=crop"),
+        new Product("p2","Cam Úc", 42000, "https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1200&auto=format&fit=crop"),
+        new Product("p3","Chuối Laba", 18000, "https://images.unsplash.com/photo-1571772805064-207c8435df79?q=80&w=1200&auto=format&fit=crop"),
+        new Product("p4","Cà rốt Đà Lạt", 16000, "https://images.unsplash.com/photo-1546549039-f7c8c1cb1d1b?q=80&w=1200&auto=format&fit=crop"),
+        new Product("p5","Gạo ST25 (1kg)", 28000, "https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop"),
+        new Product("p6","Sữa tươi 1L", 31000, "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop")
+    ];
+
+    let cart = []; // mảng CartItem
+
+    // ===== Helper DOM =====
+    const $ = (id) => document.getElementById(id);
+    const formatVND = (n) => new Intl.NumberFormat('vi-VN', {style:'currency', currency:'VND', maximumFractionDigits:0}).format(n);
+
+    // ===== Catalog =====
+    function renderCatalog(list){
+        const data = list || products;
+        let html = "";
+        for(let i=0;i<data.length;i++){
+            const p = data[i];
+            html += `
+        <article class="card">
+          <img src="${p.image}" alt="${p.name}" />
+          <div class="pad">
+            <h4>${p.name}</h4>
+            <div class="price">${formatVND(p.price)}</div>
+            <div class="row">
+              <input id="qty_${p.id}" type="number" min="1" value="1" aria-label="Số lượng">
+              <button class="btn primary" onclick="addToCart('${p.id}')">Thêm vào giỏ</button>
+            </div>
+          </div>
+        </article>`;
+        }
+        $("catalog").innerHTML = html || `<p>Không tìm thấy sản phẩm phù hợp.</p>`;
+    }
+
+    function findProductById(id){
+        return products.find(p => p.id === id) || null;
+    }
+
+    // ===== Cart =====
+    function findCartIndexByProductId(id){
+        return cart.findIndex(ci => ci.product.id === id);
+    }
+
+    function addToCart(productId){
+        const p = findProductById(productId); if(!p) return;
+        const qtyInput = $("qty_"+productId);
+        let qty = Number(qtyInput ? qtyInput.value : 1);
+        if (!Number.isFinite(qty) || qty<=0){ alert("Số lượng không hợp lệ"); return }
+
+        const idx = findCartIndexByProductId(productId);
+        if (idx>=0) cart[idx].qty += qty; else cart.push(new CartItem(p, qty));
+        renderCart();
+    }
+
+    function increaseQty(index){ cart[index].qty++; renderCart() }
+    function decreaseQty(index){
+        cart[index].qty--;
+        if (cart[index].qty<=0) cart.splice(index,1);
+        renderCart();
+    }
+    function removeCartItem(index){ cart.splice(index,1); renderCart() }
+    function clearCart(){ if(confirm("Xoá toàn bộ giỏ hàng?")){ cart=[]; renderCart() } }
+
+    function calcTotal(){ return cart.reduce((s,it)=> s+it.subtotal(), 0) }
+
+    function renderCart(){
+        let rows = "";
+        for(let i=0;i<cart.length;i++){
+            const it = cart[i];
+            rows += `
+          <tr>
+            <td>${i+1}</td>
+            <td>${it.product.name}</td>
+            <td class="right">${formatVND(it.product.price)}</td>
+            <td class="center">
+              <button class="btn small danger" aria-label="Giảm" onclick="decreaseQty(${i})">-</button>
+              ${it.qty}
+              <button class="btn small" aria-label="Tăng" onclick="increaseQty(${i})">+</button>
+            </td>
+            <td class="right">${formatVND(it.subtotal())}</td>
+            <td><button class="btn small" onclick="removeCartItem(${i})">Xoá</button></td>
+          </tr>`;
+        }
+        $("cartBody").innerHTML = rows;
+        const total = calcTotal();
+        $("cartTotal").textContent = formatVND(total);
+        $("cartCount").textContent = String(cart.length);
+        $("cartCountBottom").textContent = String(cart.length);
+    }
+
+    // ===== Search (Beginner friendly) =====
+    const searchInput = $("searchInput");
+    searchInput.addEventListener('input', function(){
+        const q = this.value.trim().toLowerCase();
+        if (!q) return renderCatalog();
+        renderCatalog(products.filter(p => p.name.toLowerCase().includes(q)));
+    });
+    function clearSearch(){ searchInput.value=''; renderCatalog() }
+
+    // ===== Boot =====
+    renderCatalog();
+    renderCart();
+</script>
 </body>
 </html>
