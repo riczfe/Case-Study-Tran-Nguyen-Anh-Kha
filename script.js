@@ -27,12 +27,15 @@ const products = [
     new Product("p6","Sữa tươi 1L", 31000, "https://www.theealinggrocer.com/cdn/shop/products/IMG_3531_1200x.jpg?v=1638343431")
 ];
 
-// Giỏ hàng là 1 mảng các CartItem
-let cart = []; // ví dụ: [ CartItem(Product p1, 2), CartItem(Product p2, 1) ]
+// Giỏ hàng: Ban đầu là trống => ref theo CartItem(product + product id + quantity)
+// CartItem(Product p1, 2), CartItem(Product p2, 1) ]
+let cart = [];
 
 // ===== Helper DOM =====
-// Hàm rút gọn lấy element theo id (viết ngắn gọn cho tiện)
-const $ = (id) => document.getElementById(id);
+// Lấy element theo id tương ứng với tạo ra hàng loạt products bên trên (viết ngắn gọn cho tiện)
+function $(id) {
+    return document.getElementById(id);
+}
 
 // Hàm định dạng số tiền theo VND (ví dụ: 35500 -> 35.500 ₫)
 const formatVND = (n) => new Intl.NumberFormat(
