@@ -38,39 +38,106 @@ function $(id) {
 }
 
 // Hàm định dạng số tiền theo VND (ví dụ: 35500 -> 35.500 ₫)
-const formatVND = (n) => new Intl.NumberFormat(
-    'vi-VN',
-    { style:'currency', currency:'VND', maximumFractionDigits:0 }
-).format(n);
+function formatVND(n) {
+    return n.toLocaleString('vi-VN') + " đ";
+}
 
 // ===== Catalog =====
-// Vẽ danh sách sản phẩm ra giao diện (grid card)
-function renderCatalog(list){
-    // nếu không truyền danh sách lọc thì dùng toàn bộ products
-    const data = list || products;
-    let html = "";
 
-    // duyệt từng sản phẩm để tạo thẻ HTML
-    for(let i = 0; i < data.length; i++){
-        const p = data[i];
-        html += `
-        <article class="card">
-          <img src="${p.image}" alt="${p.name}" />
-          <div class="pad">
-            <h4>${p.name}</h4>
-            <div class="price">${formatVND(p.price)}</div>
-            <div class="row">
-              <!-- ô nhập số lượng, id gắn theo mã sản phẩm để dễ lấy -->
-              <input id="qty_${p.id}" type="number" min="1" value="1" aria-label="Số lượng">
-              <!-- nút thêm vào giỏ gọi addToCart với id sản phẩm -->
-              <button class="btn primary" onclick="addToCart('${p.id}')">Thêm vào giỏ</button>
-            </div>
-          </div>
-        </article>`;
+//Method 1:
+// function renderCatalog(list) {
+//     var data = list || products;
+//     var catalog = document.getElementById("catalog");
+//
+//     // Xóa nội dung cũ
+//     catalog.innerHTML = "";
+//
+//     // Nếu không có sản phẩm
+//     if (!data || data.length === 0) {
+//         var p = document.createElement("p");
+//         p.textContent = "Không tìm thấy sản phẩm phù hợp.";
+//         catalog.appendChild(p);
+//         return;
+//     }
+//
+//     // Tạo thẻ cho từng sản phẩm
+//     for (var i = 0; i < data.length; i++) {
+//         var item = data[i];
+//
+//         var card = document.createElement("article");
+//         card.className = "card";
+//
+//         var img = document.createElement("img");
+//         img.src = item.image;
+//         img.alt = item.name;
+//         card.appendChild(img);
+//
+//         var pad = document.createElement("div");
+//         pad.className = "pad";
+//         card.appendChild(pad);
+//
+//         var h4 = document.createElement("h4");
+//         h4.textContent = item.name;
+//         pad.appendChild(h4);
+//
+//         var price = document.createElement("div");
+//         price.className = "price";
+//         price.textContent = formatVND(item.price);
+//         pad.appendChild(price);
+//
+//         var row = document.createElement("div");
+//         row.className = "row";
+//         pad.appendChild(row);
+//
+//         var qty = document.createElement("input");
+//         qty.type = "number";
+//         qty.min = "1";
+//         qty.value = "1";
+//         qty.id = "qty_" + item.id;
+//         row.appendChild(qty);
+//
+//         var btn = document.createElement("button");
+//         btn.className = "btn primary";
+//         btn.textContent = "Thêm vào giỏ";
+//         // gán sự kiện click
+//         btn.onclick = (function (pid) {
+//             return function () { addToCart(pid); };
+//         })(item.id);
+//         row.appendChild(btn);
+//
+//         catalog.appendChild(card);
+//     }
+// }
+
+//Method 2: Vẽ danh sách sản phẩm ra giao diện (grid card)
+function renderCatalog(list) {
+    // Nếu không truyền list thì dùng products
+    var data = list || products;
+    var html = "";
+
+    // Duyệt từng sản phẩm để tạo HTML (nối chuỗi kiểu cũ)
+    for (var i = 0; i < data.length; i++) {
+        var p = data[i];
+
+        html += "<article class='card'>"
+            +   "<img src='" + p.image + "' alt='" + p.name + "' />"
+            +   "<div class='pad'>"
+            +     "<h4>" + p.name + "</h4>"
+            +     "<div class='price'>" + formatVND(p.price) + "</div>"
+            +     "<div class='row'>"
+            +       "<input id='qty_" + p.id + "' type='number' min='1' value='1'>"
+            +       "<button class='btn primary' onclick=\"addToCart('" + p.id + "')\">Thêm vào giỏ</button>"
+            +     "</div>"
+            +   "</div>"
+            + "</article>";
     }
 
-    // nếu danh sách rỗng thì hiện thông báo, ngược lại gán html tạo ra
-    $("catalog").innerHTML = html || `<p>Không tìm thấy sản phẩm phù hợp.</p>`;
+    // Nếu rỗng, hiện thông báo
+    if (html === "") {
+        html = "<p>Không tìm thấy sản phẩm phù hợp.</p>";
+    }
+
+    document.getElementById("catalog").innerHTML = html;
 }
 
 // Tìm 1 sản phẩm trong catalog theo id (trả về Product hoặc null)
