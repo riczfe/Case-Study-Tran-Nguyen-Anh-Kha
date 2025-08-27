@@ -1,52 +1,113 @@
 <!doctype html>
-<html lang="vi">
 <head>
-    <meta charset="utf-8">
-    <title>Supermarket – OOP Ultra Basic (Beautified)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="styles.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🛒 Supermarket – Beginner Edition</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-    <section class="hero">
-        <h2>🛒 ONLINE SHOPPING CENTRE</h2>
-        <div class="subtitle">SIÊU THỊ ONLINE - TRẦN NGUYỄN ANH KHA</div>
-    </section>
+<!-- ===== Header ===== -->
+<header>
+    <nav class="nav">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"></div>
+            <h1>Online Shopping Centre</h1>
+        </div>
+        <div class="links">
+            <a href="#welcome">Trang chủ</a>
+            <a href="#catalog">Sản phẩm</a>
+            <a href="#about">Giới thiệu</a>
+            <a href="#contact">Liên hệ</a>
+            <span class="cart-chip" title="Tổng số mặt hàng trong giỏ">
+          🛒 <span>Giỏ hàng</span> <b id="cartCount">0</b>
+        </span>
+        </div>
+    </nav>
+</header>
 
-    <h3 class="section-title">Sản phẩm</h3>
-    <div id="catalog" class="grid"></div>
-
-    <div class="panel">
-        <h3>Giỏ hàng</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Sản phẩm</th>
-                <th class="right">Giá</th>
-                <th class="center">SL</th>
-                <th class="right">Thành tiền</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody id="cartBody"></tbody>
-            <tfoot>
-            <tr>
-                <th colspan="4" class="right">Tổng tiền</th>
-                <th class="right" id="cartTotal">0.00</th>
-                <th></th>
-            </tr>
-            </tfoot>
-        </table>
-        <div class="cart-actions">
-            <div class="pill"><span class="dot"></span> Tổng mặt hàng: <b id="cartCount">0</b></div>
-            <div>
-                <button class="ghost" onclick="clearCart()">Xoá giỏ</button>
-                <button onclick="checkout()">Thanh toán</button>
+<!-- ===== Welcome / Hero ===== -->
+<section id="welcome" class="hero" aria-label="Chào mừng">
+    <div class="hero-inner">
+        <div class="hero-left">
+            <h2>Siêu thị online – Trần Nguyễn Anh Kha</h2>
+            <p>Mua thực phẩm tươi ngon, giao nhanh trong ngày. Giá tốt, rõ ràng – thao tác đơn giản cho người mới học web.</p>
+            <div class="cta">
+                <a class="btn primary" href="#shop">Mua sắm ngay</a>
+                <a class="btn ghost" href="#about">Tìm hiểu thêm</a>
             </div>
         </div>
+        <div class="hero-right" aria-hidden="true"></div>
     </div>
-</div>
+</section>
+
+<!-- ===== Catalog Section ===== -->
+<main id="shop" class="container">
+    <div class="section">
+        <h3>Sản phẩm</h3>
+        <div class="searchbar">
+            <input id="searchInput" type="search" placeholder="Tìm tên sản phẩm… (vd: táo, gạo)" aria-label="Tìm sản phẩm" />
+            <button class="btn" onclick="clearSearch()">Xoá</button>
+        </div>
+    </div>
+
+    <div id="catalog" class="grid" aria-live="polite"></div>
+
+    <!-- ===== Cart Panel ===== -->
+    <section class="panel" aria-label="Giỏ hàng">
+        <h3>Giỏ hàng</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Sản phẩm</th>
+                    <th class="right">Giá</th>
+                    <th class="center">SL</th>
+                    <th class="right">Thành tiền</th>
+                    <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody id="cartBody"></tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="4" class="right">Tổng tiền</th>
+                    <th class="right" id="cartTotal">0</th>
+                    <th></th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="cart-actions">
+            <div class="pill"><span class="dot"></span> Tổng mặt hàng: <b id="cartCountBottom">0</b></div>
+            <div>
+                <button class="btn ghost" onclick="clearCart()">Xoá giỏ</button>
+                <button class="btn primary" onclick="checkout()">Thanh toán</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== About & Contact ===== -->
+    <section id="about" class="section">
+        <h3>Giới thiệu</h3>
+    </section>
+    <div class="panel" style="padding:16px">
+        <p>Đây là phiên bản tối giản của<b> Trần Nguyễn Anh Kha</b> khi phát triển Case Study của Module 1.</p>
+    </div>
+
+    <section id="contact" class="section">
+        <h3>Liên hệ</h3>
+    </section>
+    <div class="panel" style="padding:16px">
+        <p>Email: <a href="mailto:erictrankha@gmail.com">erictrankha@gmail.com</a> · Hotline: 1900 0000</p>
+    </div>
+</main>
+
+<footer>
+    <div class="foot">
+        <small>© 2025 Online Shopping Centre. Case study for Module 1</small>
+        <small><a href="#welcome">Về đầu trang ↑</a></small>
+    </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
