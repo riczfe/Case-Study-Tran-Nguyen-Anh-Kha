@@ -71,9 +71,7 @@ README.md → tài liệu (file này)
 
 ↓ 
 
-(cập nhật mảng cart[])
-
-[Render Function] (renderCart / renderCatalog)
+[Render Function] (renderCart / renderCatalog) (cập nhật mảng cart[])
 
 ↓
 
@@ -100,6 +98,7 @@ function saveCart(){
 cart.push(new CartItem(p, qty));
 saveCart();
 renderCart();
+```
 
 📷 Screenshot (demo)
 ![Trang chủ](Screenshots/1.png)
