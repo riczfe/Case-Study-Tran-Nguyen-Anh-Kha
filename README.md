@@ -80,26 +80,6 @@ README.md → tài liệu (file này)
 
 ---
 
-## 💾 Bonus: Lưu giỏ hàng với localStorage
-
-Để giỏ hàng không mất khi reload trang:
-
-```js
-// Load cart từ localStorage khi khởi động
-let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-renderCart();
-
-// Hàm saveCart – gọi sau mỗi CRUD
-function saveCart(){
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Ví dụ: trong addToCart, increaseQty, removeCartItem...
-cart.push(new CartItem(p, qty));
-saveCart();
-renderCart();
-```
-
 📷 Screenshot (demo)
 ![Trang chủ](Screenshots/1.png)
 ![Catalog](Screenshots/2.png)
