@@ -64,11 +64,19 @@ README.md → tài liệu (file này)
 ## 📊 Luồng dữ liệu (flow)
 
 [User Action]
+
 ↓
+
 [CRUD Function] (addToCart, increaseQty, removeCartItem, ...)
-↓ (cập nhật mảng cart[])
+
+↓ 
+
+(cập nhật mảng cart[])
+
 [Render Function] (renderCart / renderCatalog)
+
 ↓
+
 [HTML Updated] (#catalog, #cartBody, #cartTotal, #cartCount, ...)
 
 
@@ -94,10 +102,10 @@ saveCart();
 renderCart();
 
 📷 Screenshot (demo)
-![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/1.png?raw=true)
-![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/2.png?raw=true)
-![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/3.png?raw=true)
-![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/4.png?raw=true)
+![Trang chủ](Screenshots/1.png)
+![Catalog](Screenshots/2.png)
+![Giỏ hàng](Screenshots/3.png)
+![Responsive](Screenshots/4.png)
 👨‍💻 Tác giả
 
 Trần Nguyễn Anh Kha
