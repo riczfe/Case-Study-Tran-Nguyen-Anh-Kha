@@ -94,12 +94,10 @@ saveCart();
 renderCart();
 
 📷 Screenshot (demo)
-<img width="1470" height="696" alt="Screenshot 2025-09-03 at 18 16 48" src="https://github.com/user-attachments/assets/57e9d83e-d207-4a56-a26b-de4a4db397f6" />
-
-<img width="1470" height="663" alt="Screenshot 2025-09-03 at 18 17 06" src="https://github.com/user-attachments/assets/8c21bea7-b2e7-4be8-81d1-36a6e087584e" />
-
-<img width="1470" height="713" alt="Screenshot 2025-09-03 at 18 17 15" src="https://github.com/user-attachments/assets/c0603bcd-0948-4474-b27a-a15fb6f162a0" />
-
+![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/1.png?raw=true)
+![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/2.png?raw=true)
+![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/3.png?raw=true)
+![image alt](https://github.com/riczfe/Case-Study-Tran-Nguyen-Anh-Kha/blob/main/Screenshots/4.png?raw=true)
 👨‍💻 Tác giả
 
 Trần Nguyễn Anh Kha
